@@ -7,6 +7,5 @@
 auth.json
 composer.lock
 composer.phar
-package-lock.json
 phpunit.xml
 Thumbs.db
