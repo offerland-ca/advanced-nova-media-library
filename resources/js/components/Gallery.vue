@@ -56,7 +56,6 @@
         :id="`__media__${field.attribute}`"
         :multiple="multiple"
         ref="file"
-        class="form-file-input"
         type="file"
         :disabled="uploading"
         @change="add"
