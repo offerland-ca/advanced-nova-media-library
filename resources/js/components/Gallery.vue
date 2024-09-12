@@ -52,6 +52,7 @@
     <br style="clear: both" />
 
     <span v-if="editable" class="">
+      <!--
       <label :for="`__media__${field.attribute}`" class="">
         <DefaultButton type="button" @click.prevent="focusFileInput">
           <template v-if="uploading"
@@ -60,6 +61,7 @@
           <template v-else>{{ label }}</template>
         </DefaultButton>
       </label>
+      -->
       <input
         :id="`__media__${field.attribute}`"
         :multiple="multiple"
