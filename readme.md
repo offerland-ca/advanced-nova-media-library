@@ -1,23 +1,9 @@
 # Laravel Advanced Nova Media Library
 
-> Fork of the [@ebess/advanced-nova-media-library](https://github.com/ebess/advanced-nova-media-library) to support drag and drop for uploading
+> Fork of the [@ebess/advanced-nova-media-library](https://github.com/ebess/advanced-nova-media-library)
+> to support drag and drop for uploading
 
-Manage images of [spatie's media library package](https://github.com/spatie/laravel-medialibrary). Upload multiple images and order them by drag and drop.
-
-##### Table of Contents
-
-* [Examples](#examples)  
-* [Install](#install)  
-* [Model media configuration](#model-media-configuration)  
-* [Generic file management](#generic-file-management)  
-* [Single image upload](#single-image-upload)  
-* [Multiple image upload](#multiple-image-upload)  
-* [Selecting existing media](#selecting-existing-media)  
-* [Names of uploaded images](#names-of-uploaded-images)  
-* [Image cropping](#image-cropping)
-* [Custom properties](#custom-properties)
-* [Custom headers](#custom-headers)
-* [Media Field (Video)](#media-field-video)  
+Upload multiple files and order them by drag and drop.
 
 ## Examples
 
@@ -28,6 +14,7 @@ Manage images of [spatie's media library package](https://github.com/spatie/lara
 ![Generic file management](https://raw.githubusercontent.com/ebess/advanced-nova-media-library/master/docs/file-management.png)
 
 ## Install
+
 ```bash
 composer require ebess/advanced-nova-media-library
 ```
@@ -39,6 +26,7 @@ php artisan vendor:publish --tag=nova-media-library
 ## Model media configuration
 
 Let's assume you configured your model to use the media library like following:
+
 ```php
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -119,20 +107,25 @@ public function fields(Request $request)
 If you upload the same media files to multiple models and you do not want to select it from the file system
 all over again, use this feature. Selecting an already existing media will **copy it**.
 
-**Attention**: This feature will expose an endpoint to every user of your application to search existing media. 
-If your media upload / custom properties on the media models are confidential, **do not enable this feature!** 
+**Attention**: This feature will expose an endpoint to every user of your application to search existing media.
+If your media upload / custom properties on the media models are confidential, **do not enable this feature!**
 
-* Publish the config files if you did not yet
+-   Publish the config files if you did not yet
+
 ```bash
 artisan vendor:publish --tag=nova-media-library
 ```
-* Enable this feature in config file *config/nova-media-library*
+
+-   Enable this feature in config file _config/nova-media-library_
+
 ```php
 return [
     'enable-existing-media' => true,
 ];
 ```
-* Enable the selection of existing media field
+
+-   Enable the selection of existing media field
+
 ```php
 Images::make('Image')->enableExistingMedia(),
 ```
@@ -180,25 +173,29 @@ Images::make('Image 1', 'img1')
 
 ![Cropping](https://raw.githubusercontent.com/ebess/advanced-nova-media-library/master/docs/cropping.gif)
 
-By default you are able to crop / rotate images by clicking the scissors in the left bottom corner on the edit view. 
-The [vue-js-clipper](https://github.com/timtnleeProject/vuejs-clipper) is used for this purpose. The cropping feature is 
+By default you are able to crop / rotate images by clicking the scissors in the left bottom corner on the edit view.
+The [vue-js-clipper](https://github.com/timtnleeProject/vuejs-clipper) is used for this purpose. The cropping feature is
 limited to mime type of `image/jpg`, `image/jpeg` and `image/png`.
 
-**Important:** By cropping an existing image the original media model is deleted and replaced by the cropped image. 
+**Important:** By cropping an existing image the original media model is deleted and replaced by the cropped image.
 All custom properties are copied form the old to the new model.
 
 To disable this feature use the `croppable` method:
+
 ```php
 Images::make('Gallery')->croppable(false);
 ```
 
-You can set all configurations like ratio e.g. as following: 
+You can set all configurations like ratio e.g. as following:
+
 ```php
 Images::make('Gallery')->croppingConfigs(['aspectRatio' => 4/3]);
 ```
+
 Available cropping configuration, see https://github.com/timtnleeProject/vuejs-clipper#clipper-basic.
 
 It is possible to enforce cropping on upload, for example to ensure the image has the set aspect ratio:
+
 ```php
 Images::make('Gallery')->mustCrop();
 ```
@@ -206,6 +203,7 @@ Images::make('Gallery')->mustCrop();
 ### Disabling cropping by default
 
 By default, the cropping feature is enabled. To disable it by default for all images set `default-croppable` in `config/nova-media-library.php` to `false`:
+
 ```php
 return [
     'default-croppable' => false,
@@ -222,13 +220,13 @@ Images::make('Gallery')
         Boolean::make('Active'),
         Markdown::make('Description'),
     ]);
-    
+
 Files::make('Multiple files', 'multiple_files')
     ->customPropertiesFields([
         Boolean::make('Active'),
         Markdown::make('Description'),
     ]);
-    
+
 // custom properties without user input
 Files::make('Multiple files', 'multiple_files')
     ->customProperties([
@@ -237,7 +235,7 @@ Files::make('Multiple files', 'multiple_files')
     ]);
 ```
 
-## Show image statistics *(size, dimensions, type)*
+## Show image statistics _(size, dimensions, type)_
 
 ![Image statistics](https://raw.githubusercontent.com/ebess/advanced-nova-media-library/master/docs/show-statistics.png)
 
@@ -251,7 +249,7 @@ Images::make('Gallery')
 ```php
 Images::make('Gallery')
     ->customHeaders([
-        'header-name' => 'header-value', 
+        'header-name' => 'header-value',
     ]);
 ```
 
@@ -299,12 +297,12 @@ Files::make('Multiple files', 'multiple_files')
     ->temporary(now()->addMinutes(10),
 ```
 
-**Note**: This feature does not work with the existing media feature. 
+**Note**: This feature does not work with the existing media feature.
 
 # Credits
 
-* [nova media library](https://github.com/jameslkingsley/nova-media-library)
+-   [nova media library](https://github.com/jameslkingsley/nova-media-library)
 
 # Alternatives
 
-* [dmitrybubyakin/nova-medialibrary-field](https://github.com/dmitrybubyakin/nova-medialibrary-field)
+-   [dmitrybubyakin/nova-medialibrary-field](https://github.com/dmitrybubyakin/nova-medialibrary-field)
