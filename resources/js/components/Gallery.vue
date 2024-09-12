@@ -360,6 +360,10 @@ export default {
 
 <style lang="scss">
 .gallery {
+  input {
+    background-color: "#838383";
+  }
+
   &.editable {
     .gallery-item {
       cursor: grab;
