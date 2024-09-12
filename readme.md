@@ -284,7 +284,7 @@ class YourModel extends Model implements HasMedia
 }
 ```
 
-## Temporary Urls
+## Temporary URLs
 
 If you are using Amazon S3 to store your media, you will need to use the `temporary` function on your field to generate
 a temporary signed URL. This function expects a valid Carbon instance that will specify when the URL should expire.
