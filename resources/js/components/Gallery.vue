@@ -65,6 +65,7 @@
       <input
         :id="`__media__${field.attribute}`"
         :multiple="multiple"
+        class="form-control"
         ref="file"
         type="file"
         :disabled="uploading"
