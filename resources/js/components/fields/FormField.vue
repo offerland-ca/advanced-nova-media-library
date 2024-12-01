@@ -52,7 +52,7 @@ import { FormField, HandlesValidationErrors } from "laravel-nova";
 import Gallery from "../Gallery";
 import FullWidthField from "../FullWidthField";
 import ExistingMedia from "../ExistingMedia";
-import objectToFormData from "object-to-formdata";
+import { serialize } from "object-to-formdata";
 import get from "lodash/get";
 
 export default {
@@ -142,7 +142,7 @@ export default {
           formData.append(`__media__[${field}][${index}]`, file.id);
         }
 
-        objectToFormData(
+        serialize(
           {
             [`__media-custom-properties__[${field}][${index}]`]:
               this.getImageCustomProperties(file),
